@@ -7,10 +7,10 @@ def f(x, y):
     return 729 * x**2 * y**2  
 
 u = np.zeros((n, n), dtype=float)
-u[0, :] = 0   # top boundary
-u[-1, :] = 0  # bottom boundary
-u[:, 0] = 0   # left boundary
-u[:, -1] = 0  # right boundary
+u[0, :] = 0   # top boundary    (row i=0    -> i indexes y)
+u[-1, :] = 0  # bottom boundary (row i=n-1)
+u[:, 0] = 0   # left boundary   (col j=0    -> j indexes x)
+u[:, -1] = 0  # right boundary  (col j=n-1)
 
 tolerance = 0.0001
 error = 1
@@ -22,7 +22,7 @@ while error > tolerance and iteration < max_iterations:
 
     for i in range(1, n - 1):
         for j in range(1, n - 1):
-            x, y = i * h, j * h
+            x, y = j * h, i * h
             u[i, j] = (
                 u[i-1, j] +
                 u[i+1, j] +
